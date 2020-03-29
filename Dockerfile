@@ -1,4 +1,4 @@
-FROM unsat/serval-tools:latest
+FROM unsat/serval-tools:artifact
 
 RUN raco pkg install --auto
 
