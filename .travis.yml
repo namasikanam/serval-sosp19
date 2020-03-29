@@ -1,0 +1,19 @@
+language: c
+
+services:
+  - docker
+
+sudo: required
+
+# pull docker
+before_install:
+- docker pull unsat/serval-tools:latest
+- docker run -it --name serval unsat/serval-tools:latest
+
+before_script:
+  - raco pkg install --auto
+
+script:
+  # Add /usr/lib64 for libunicorn
+  - export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib64"
+  - make -C test all
